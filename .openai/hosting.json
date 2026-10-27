@@ -1,1 +1,6 @@
-{"project_id":"appgprj_6ae0e01af7e08191832b0544899139c7","static":{"directory":"dist"}}
+{
+  "project_id": "appgprj_6ae0e01af7e08191832b0544899139c7",
+  "static": {
+    "directory": "test/1028_Lux3D_assumption_test/dist"
+  }
+}
