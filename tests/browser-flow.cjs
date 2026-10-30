@@ -1,0 +1,20 @@
+const {chromium}=require('playwright');
+(async()=>{
+ const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/chromium',args:['--no-sandbox','--enable-unsafe-swiftshader']});
+ const page=await browser.newPage({viewport:{width:390,height:844}}); const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:8000'); await page.locator('#prompt').fill('浏览器验证：刀与锤子');
+ await page.locator('#craftSubmit').click();
+ await page.waitForFunction(()=>document.querySelector('#craftTasks').textContent.includes('succeeded/complete'));
+ await page.locator('#craftTasks button').first().click();
+ await page.locator('#craftPreview model-viewer').waitFor(); await page.locator('#craftPreview model-viewer').scrollIntoViewIfNeeded();
+ await page.waitForFunction(()=>document.querySelector('#craftPreview model-viewer').loaded===true,{},{timeout:15000});
+ await page.locator('#craftPreview > button').click();
+ await page.waitForFunction(()=>document.querySelector('#craftPreview button').textContent==='已标记装备');
+ await page.reload(); await page.waitForFunction(()=>document.querySelector('#craftTasks').textContent.includes('succeeded/complete'));
+ await page.locator('#craftMode').selectOption('real'); await page.locator('#craftSubmit').click();
+ await page.waitForFunction(()=>document.querySelector('#craftTasks').textContent.includes('failed/fusion'));
+ if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('mobile overflow');
+ if(errors.length)throw Error(errors.join('\n'));
+ await page.screenshot({path:'/tmp/weapon-browser.png',fullPage:true});
+ console.log('PASS: browser mock create, model loaded, equip, reload, real failure visible, mobile width, zero JS errors');await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

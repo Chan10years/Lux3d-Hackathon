@@ -1,0 +1,9 @@
+{
+  "rarities": {"R": 0.75, "SR": 0.22, "SSR": 0.03},
+  "multipliers": {"R": 1, "SR": 1.5, "SSR": 2},
+  "normal_skills": [{"id":"slash","name":"斩击","types":["short","long"]},{"id":"sweep","name":"横扫","types":["long"]},{"id":"jab","name":"突刺","types":["short","long"]}],
+  "special_skills": [{"id":"fire","name":"烈焰附魔","types":["short","long"]},{"id":"guard","name":"格挡反击","types":["short","long"]}],
+  "length_m": {"short":0.8,"long":1.6},
+  "max_upload_bytes": 5242880,
+  "provider_timeout_seconds": 120
+}
