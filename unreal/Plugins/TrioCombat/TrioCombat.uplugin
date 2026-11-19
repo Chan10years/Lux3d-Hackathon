@@ -1,0 +1,14 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Trio Combat",
+  "Category": "Gameplay",
+  "EnabledByDefault": true,
+  "CanContainContent": true,
+  "Plugins": [ { "Name": "Niagara", "Enabled": true } ],
+  "Modules": [
+    { "Name": "TrioCombat", "Type": "Runtime", "LoadingPhase": "Default" },
+    { "Name": "TrioCombatEditor", "Type": "Editor", "LoadingPhase": "Default" }
+  ]
+}

@@ -1,0 +1,10 @@
+Name,Character,Multiplier,FullChargeMultiplier
+GunSingle,Guns,0.60,0.60
+GunSweep,Guns,0.28,0.28
+BladeFirst,Miyabi,0.40,0.40
+BladeSecond,Miyabi,0.40,0.40
+BladeThird,Miyabi,0.60,0.60
+BladeAfterimage,Miyabi,0.20,0.20
+BladeRift,Miyabi,0.17,0.17
+BladeFinish,Miyabi,0.80,0.80
+Sniper,Yousun,2.00,6.00
