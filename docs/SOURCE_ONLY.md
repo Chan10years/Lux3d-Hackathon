@@ -41,3 +41,10 @@ Observed checks on the export checkout:
 - Staged-file audit: **148 files, approximately 1.6 MiB**, all UTF-8 text/source; no binary assets/runtime directories, unexpected file types, common real-key formats or credential literals found. All selected source files are present. Original development-source SHA-256 hashes remain unchanged. The vendor MIT license is preserved. These checks are scoped to new publication files; they are not a comprehensive security audit.
 
 Existing upstream whitespace is retained in vendor source. A diff check with trailing-space and blank-EOF warnings disabled is used to check for other patch errors. UE compilation emits existing NetUpdateFrequency deprecation warnings in CombatMatchActor and GoldenHammerActor; these are not compile failures.
+
+
+## Latest source sync · 2026-11-21
+
+The default branch now includes the reviewed source snapshot. Synced the remaining `RoomCodeSubsystem.cpp` and `.h` changes from local development commit `e4a3dca`: reset ignored movement/look input when entering the match and restore game-only input after pawn possession. Other published gameplay source already matched that development commit (except the documented removal of a workstation path from a comment). Original development history, assets and private runtime launchers remain excluded.
+
+Validation of this update: Unreal 5.8 Editor build **succeeded** (62 compile/link/metadata actions). New changes contain only the two source files and this text record, with no binary assets or credential-format matches. No multiplayer runtime acceptance is implied.

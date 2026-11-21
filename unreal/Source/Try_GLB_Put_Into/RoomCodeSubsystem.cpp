@@ -354,6 +354,7 @@ void URoomCodeSubsystem::UpdateMouseAndWorldState(UWorld* World)
 	if (LastInitializedWorld.Get() != World)
 	{
 		LastInitializedWorld = World;
+		LastMatchInputPawn.Reset();
 		HookedModeWidget.Reset();
 		HookedCharSelWidget.Reset();
 		bWorldAutoNavigated = false;
@@ -363,6 +364,8 @@ void URoomCodeSubsystem::UpdateMouseAndWorldState(UWorld* World)
 			bRoomEntryModalOpen = false;
 			if (PC)
 			{
+				PC->ResetIgnoreMoveInput();
+				PC->ResetIgnoreLookInput();
 				PC->bShowMouseCursor = false;
 				PC->SetInputMode(FInputModeGameOnly());
 				if (FSlateApplication::IsInitialized())
@@ -379,6 +382,22 @@ void URoomCodeSubsystem::UpdateMouseAndWorldState(UWorld* World)
 				bRoomEntryModalOpen = false;
 			}
 		}
+	}
+
+	if (bIsMatch && PC && PC->GetPawn() && LastMatchInputPawn.Get() != PC->GetPawn() && !bMatchRoomExpanded)
+	{
+		LastMatchInputPawn = PC->GetPawn();
+		PC->ResetIgnoreMoveInput();
+		PC->ResetIgnoreLookInput();
+		PC->ResetIgnoreInputFlags();
+		PC->GetPawn()->EnableInput(PC);
+		PC->bShowMouseCursor = false;
+		PC->SetInputMode(FInputModeGameOnly());
+		if (FSlateApplication::IsInitialized())
+		{
+			FSlateApplication::Get().SetAllUserFocusToGameViewport();
+		}
+		UE_LOG(LogTemp, Display, TEXT("[RoomCode] Restored GameOnly input on Lvl_ZZZ for pawn=%s"), *PC->GetPawn()->GetName());
 	}
 
 	if (bIsFront && PC && !PC->bShowMouseCursor)

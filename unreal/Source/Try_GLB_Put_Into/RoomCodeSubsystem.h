@@ -132,6 +132,7 @@ private:
 	UPROPERTY(Transient) TObjectPtr<UFont> DisplayFontAsset;
 	UPROPERTY(Transient) TObjectPtr<UFont> MediumFontAsset;
 	TWeakObjectPtr<UWorld> LastInitializedWorld;
+	TWeakObjectPtr<class APawn> LastMatchInputPawn;
 	TWeakObjectPtr<UUserWidget> HookedModeWidget;
 	TWeakObjectPtr<UUserWidget> HookedCharSelWidget;
 	FDelegateHandle TickDelegateHandle;
